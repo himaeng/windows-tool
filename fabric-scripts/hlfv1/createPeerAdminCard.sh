@@ -26,7 +26,7 @@ else
     echo 'Need to have composer-cli installed at version 0.16'
     exit 1
 fi
-#Changed by Raj
+#Changed 
 #cat << EOF > /tmp/.connection.json
 mkdir -p $DIR/temp;
 
@@ -53,7 +53,7 @@ EOF
 PRIVATE_KEY="${DIR}"/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/114aab0e76bf0c78308f89efc4b8c9423e31568da0c340ca187a9b17aa9a4457_sk
 CERT="${DIR}"/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem
 
-# Changed by Raj to take care of the paths
+# Changed  to take care of the paths
 PRIVATE_KEY="$(cygpath -pw "$PRIVATE_KEY")"
 CERT="$(cygpath -pw "$CERT")"
 
@@ -63,7 +63,7 @@ fi
 
 CYGDIR="$(cygpath -pw "$DIR")"
 
-#Changed by Raj
+#Changed 
 #"${HL_COMPOSER_CLI}" card create -p /tmp/.connection.json -u PeerAdmin -c "${CERT}" -k "${PRIVATE_KEY}" -r PeerAdmin -r ChannelAdmin --file /tmp/PeerAdmin@hlfv1.card
 "${HL_COMPOSER_CLI}" card create-p $CYGDIR/temp/.connection.json -u PeerAdmin -c "${CERT}" -k "${PRIVATE_KEY}" -r PeerAdmin -r ChannelAdmin --file $CYGDIR/temp/PeerAdmin@hlfv1.card
 #"${HL_COMPOSER_CLI}" card import --file /tmp/PeerAdmin@hlfv1.card 

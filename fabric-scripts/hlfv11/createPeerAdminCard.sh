@@ -33,7 +33,7 @@ Parse_Arguments() {
 	done
 }
 
-# Change made by Raj
+# Change made 
 # HOST=localhost
 if [[ ! -v DOCKER_HOST ]]; then
     echo "DOCKER_HOST is NOT set <<<< Please set the env for Docker !!!!"
@@ -80,7 +80,7 @@ else
     exit 1
 fi
 
-#Changed by Raj
+#Changed 
 mkdir -p $DIR/temp;
 #cat << EOF > DevServer_connection.json
 cat << EOF > DevServer_connection.json
@@ -145,18 +145,18 @@ EOF
 
 PRIVATE_KEY="${DIR}"/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/114aab0e76bf0c78308f89efc4b8c9423e31568da0c340ca187a9b17aa9a4457_sk
 CERT="${DIR}"/composer/crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem
-# Changed by Raj to take care of the paths
+# Changed  to take care of the paths
 PRIVATE_KEY="$(cygpath -pw "$PRIVATE_KEY")"
 CERT="$(cygpath -pw "$CERT")"
 
 if [ "${NOIMPORT}" != "true" ]; then
-   # Changed by Raj
+   # Changed 
    # CARDOUTPUT=/tmp/PeerAdmin@hlfv1.card
     CARDOUTPUT=$CYGDIR/temp/PeerAdmin@hlfv1.card
 else
     CARDOUTPUT=PeerAdmin@hlfv1.card
 fi
-# Chnged by Raj
+# Chnged 
 #"${HL_COMPOSER_CLI}"  card create -p DevServer_connection.json -u PeerAdmin -c "${CERT}" -k "${PRIVATE_KEY}" -r PeerAdmin -r ChannelAdmin --file $CARDOUTPUT
 "${HL_COMPOSER_CLI}"  card create -p DevServer_connection.json -u PeerAdmin -c "${CERT}" -k "${PRIVATE_KEY}" -r PeerAdmin -r ChannelAdmin --file $CARDOUTPUT
 
@@ -164,13 +164,13 @@ if [ "${NOIMPORT}" != "true" ]; then
     if "${HL_COMPOSER_CLI}"  card list -c PeerAdmin@hlfv1 > /dev/null; then
         "${HL_COMPOSER_CLI}"  card delete -c PeerAdmin@hlfv1
     fi
-# Changed by Raj
+# Changed 
 #    "${HL_COMPOSER_CLI}"  card import --file /tmp/PeerAdmin@hlfv1.card 
     "${HL_COMPOSER_CLI}"  card import --file $CYGDIR/temp/PeerAdmin@hlfv1.card
     "${HL_COMPOSER_CLI}"  card list
     echo "Hyperledger Composer PeerAdmin card has been imported, host of fabric specified as '${HOST}'"
 
-# Changed by Raj    
+# Changed     
     #rm /tmp/PeerAdmin@hlfv1.card
     rm $CYGDIR/temp/PeerAdmin@hlfv1.card
 else
